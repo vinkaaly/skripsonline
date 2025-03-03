@@ -1,101 +1,61 @@
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from "react";
 
-export default function Home() {
+const chapters = [
+  { id: "bab1", title: "BAB 1 - Pendahuluan" },
+  { id: "bab2", title: "BAB 2 - Kajian Pustaka" },
+  { id: "bab3", title: "BAB 3 - Metodologi Penelitian" },
+  { id: "bab4", title: "BAB 4 - Analisis Data" },
+  { id: "bab5", title: "BAB 5 - Kesimpulan & Saran" },
+];
+
+export default function SkripsiPage() {
+  const [activeChapter, setActiveChapter] = useState(chapters[0].id);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      for (const chapter of chapters) {
+        const element = document.getElementById(chapter.id);
+        if (element) {
+          const { top } = element.getBoundingClientRect();
+          if (top >= 0 && top <= 150) {
+            setActiveChapter(chapter.id);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <main className="min-h-screen bg-gray-100">
+      {/* Navbar */}
+      <nav className="fixed top-0 left-0 w-full bg-purple-600 text-white p-4 text-center font-bold z-50 shadow-md">
+        Skripsi Online
+      </nav>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+      {/* Isi Skripsi */}
+      <div className="pt-[100px] px-6 max-w-3xl mx-auto">
+        {chapters.map((chapter) => (
+          <section key={chapter.id} id={chapter.id} className="mb-12">
+            <h2 className="text-2xl font-bold mb-4 sticky top-[50px] bg-white py-2 px-4 shadow-md z-30">
+              {chapter.title}
+            </h2>
+            <div className="text-gray-700 text-justify space-y-4">
+              {[...Array(10)].map((_, i) => (
+                <p key={i}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum interdum, nulla in tincidunt placerat, est nunc aliquet arcu, ut consequat sapien metus vel lacus. 
+                  Integer tincidunt euismod lectus, sed tincidunt justo elementum eu. Mauris vitae risus ac metus scelerisque aliquet. 
+                  Curabitur vel ligula ut nunc congue scelerisque. Duis euismod lacus id libero convallis, id malesuada justo pharetra. 
+                </p>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </main>
   );
 }
