@@ -2,11 +2,11 @@
 import { useState, useEffect } from "react";
 
 const chapters = [
-  { id: "bab1", title: "BAB 1 - Pendahuluan" },
-  { id: "bab2", title: "BAB 2 - Kajian Pustaka" },
-  { id: "bab3", title: "BAB 3 - Metodologi Penelitian" },
-  { id: "bab4", title: "BAB 4 - Analisis Data" },
-  { id: "bab5", title: "BAB 5 - Kesimpulan & Saran" },
+  { id: "bab1", title: "BAB 1 - Pendahuluan", content: "Pendahuluan berisi latar belakang penelitian, rumusan masalah, tujuan penelitian, serta manfaat penelitian. Latar belakang menjelaskan alasan pentingnya penelitian ini dilakukan, sedangkan rumusan masalah merinci pertanyaan utama yang ingin dijawab. Tujuan penelitian memberikan gambaran mengenai hasil yang ingin dicapai, dan manfaat penelitian menjelaskan kontribusi penelitian ini dalam bidang ilmu terkait." },
+  { id: "bab2", title: "BAB 2 - Kajian Pustaka", content: "Kajian pustaka membahas teori-teori yang relevan dengan penelitian, termasuk penelitian terdahulu yang mendukung. Bagian ini menguraikan konsep-konsep utama yang menjadi dasar penelitian, serta menghubungkan penelitian ini dengan studi yang telah dilakukan sebelumnya. Selain itu, teori yang dikaji membantu dalam memahami variabel yang diteliti serta membangun kerangka berpikir yang sistematis." },
+  { id: "bab3", title: "BAB 3 - Metodologi Penelitian", content: "Metodologi penelitian menjelaskan metode penelitian yang digunakan, teknik pengumpulan data, serta teknik analisis data. Metode penelitian meliputi jenis penelitian (kualitatif atau kuantitatif), populasi dan sampel yang digunakan, serta pendekatan yang diterapkan. Teknik pengumpulan data mencakup wawancara, observasi, atau survei, sedangkan teknik analisis data menjelaskan cara mengolah data agar dapat menjawab rumusan masalah yang telah disusun." },
+  { id: "bab4", title: "BAB 4 - Analisis Data", content: "Analisis data menyajikan hasil penelitian yang diperoleh serta pembahasan terhadap hasil yang telah dianalisis. Bagian ini mencakup deskripsi data, uji validitas dan reliabilitas, serta interpretasi hasil penelitian. Hasil yang diperoleh dibandingkan dengan teori yang telah dikaji pada bab sebelumnya untuk melihat sejauh mana kesesuaian temuan dengan teori yang ada. Pembahasan ini juga mengidentifikasi faktor-faktor yang memengaruhi hasil penelitian." },
+  { id: "bab5", title: "BAB 5 - Kesimpulan & Saran", content: "Bab ini berisi kesimpulan dari penelitian yang telah dilakukan serta saran untuk penelitian selanjutnya. Kesimpulan merangkum hasil utama yang diperoleh dari penelitian ini, sedangkan saran diberikan kepada pihak yang berkepentingan agar dapat mengaplikasikan hasil penelitian atau melanjutkan studi lebih lanjut dalam topik yang terkait. Selain itu, bagian ini juga memberikan rekomendasi bagi praktisi dan akademisi untuk meningkatkan pemahaman terhadap isu yang diteliti." },
 ];
 
 export default function SkripsiPage() {
@@ -36,7 +36,6 @@ export default function SkripsiPage() {
         Skripsi Online
       </nav>
 
-
       {/* Isi Skripsi */}
       <div className="pt-[100px] px-6 max-w-3xl mx-auto">
         {chapters.map((chapter) => (
@@ -45,13 +44,7 @@ export default function SkripsiPage() {
               {chapter.title}
             </h2>
             <div className="text-gray-700 text-justify space-y-4">
-              {[...Array(10)].map((_, i) => (
-                <p key={i}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum interdum, nulla in tincidunt placerat, est nunc aliquet arcu, ut consequat sapien metus vel lacus. 
-                  Integer tincidunt euismod lectus, sed tincidunt justo elementum eu. Mauris vitae risus ac metus scelerisque aliquet. 
-                  Curabitur vel ligula ut nunc congue scelerisque. Duis euismod lacus id libero convallis, id malesuada justo pharetra. 
-                </p>
-              ))}
+              <p>{chapter.content}</p>
             </div>
           </section>
         ))}
